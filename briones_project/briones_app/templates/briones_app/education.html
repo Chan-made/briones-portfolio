@@ -1,0 +1,35 @@
+{% extends 'briones_app/base.html' %}
+{% block title %}Education — {{ owner.name }}{% endblock %}
+
+{% block content %}
+<div class="page-hero" data-title="EDUCATION">
+  <div class="page-hero-inner">
+    <p class="section-label">Academic background</p>
+    <h1 class="section-title">My <span>Education</span></h1>
+  </div>
+</div>
+
+<div class="section">
+  <div class="education-timeline">
+    {% for edu in education_list %}
+    <div class="edu-item fade-up">
+      <div class="edu-year">
+        {% if edu.year_range %}{{ edu.year_range }}
+        {% elif edu.year_start %}{{ edu.year_start }}{% if edu.year_end %} – {{ edu.year_end }}{% else %} – Present{% endif %}
+        {% endif %}
+      </div>
+      <div class="edu-degree">
+        {% if edu.degree %}{{ edu.degree }}{% else %}{{ edu }}{% endif %}
+      </div>
+      <div class="edu-school">
+        {% if edu.school %}{{ edu.school }}{% endif %}
+        {% if edu.program %} — {{ edu.program }}{% endif %}
+      </div>
+      {% if edu.description %}
+      <p class="edu-desc">{{ edu.description }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

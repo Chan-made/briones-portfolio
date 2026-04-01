@@ -1,0 +1,95 @@
+{% extends 'briones_app/base.html' %}
+{% block title %}About — {{ owner.name }}{% endblock %}
+
+{% block content %}
+<div class="page-hero" data-title="ABOUT">
+  <div class="page-hero-inner">
+    <p class="section-label">Get to know me</p>
+    <h1 class="section-title">About <span>Me</span></h1>
+  </div>
+</div>
+
+<div class="section">
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      
+      <!-- Short Bio -->
+      {% if about.short_bio %}
+        <p>{{ about.short_bio }}</p>
+      {% endif %}
+
+      <!-- Full Bio (multiple paragraphs) -->
+      {% if about.full_bio %}
+        {% for paragraph in about.bio_paragraphs %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
+      {% endif %}
+
+      <div class="divider"></div>
+
+      <!-- Career Goals -->
+      {% if about.career_goals %}
+      <div class="goals-box">
+        <h3>Career Goals &amp; Interests</h3>
+        <p>{{ about.career_goals }}</p>
+      </div>
+      {% endif %}
+
+      <br>
+
+      <div>
+        <a href="{% url 'contact' %}" class="btn btn-primary">Let's Work Together</a>
+      </div>
+    </div>
+
+    <div class="fade-up" style="animation-delay:0.1s">
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2+ </div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Cups of Coffee</div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; background:var(--black-3); border:1px solid var(--black-4); border-radius:8px; padding:1.75rem;">
+        <p class="section-label" style="margin-bottom:1rem;">Quick Info</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <span style="color:var(--yellow);font-size:1rem;">📍</span>
+            <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--gray);">
+              Tabuac, Kalumboyan
+            </span>
+          </div>
+
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <span style="color:var(--yellow);font-size:1rem;">✉️</span>
+            <a href="mailto:{{ owner.email }}" style="font-family:var(--font-mono);font-size:0.8rem;color:var(--gray);text-decoration:none;">
+              christianbriones1919@gmail.com
+            </a>
+          </div>
+
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <span style="color:var(--yellow);font-size:1rem;">💼</span>
+            <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--gray);">
+              Open to new opportunities
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

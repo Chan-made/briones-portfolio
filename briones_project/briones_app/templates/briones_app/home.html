@@ -1,0 +1,33 @@
+{% extends 'briones_app/base.html' %}
+{% load static %}
+{% block title %}{{ owner.name }} — Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hello, World</div>
+    <h1 class="hero-name">
+      {{ owner.full_name }}
+    </h1>
+    <p class="hero-tagline">{{ owner.tagline }}</p>
+    <div class="hero-actions">
+      <a href="{% url 'projects' %}" class="btn btn-primary">View My Work</a>
+      <a href="{% url 'contact' %}" class="btn btn-outline">Get In Touch</a>
+      <a href="{{ owner.github_url }}" class="btn btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-photo-wrap">
+    <div class="hero-photo-frame">
+        <img src="{{ owner.profile_photo.url }}" alt="{{ owner.full_name }}" class="hero-photo" />
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    SCROLL
+  </div>
+</section>
+{% endblock %}

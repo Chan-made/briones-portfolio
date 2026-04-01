@@ -1,0 +1,36 @@
+{% extends 'briones_app/base.html' %}
+{% block title %}Skills — {{ owner.full_name }}{% endblock %}
+
+{% block content %}
+<div class="page-hero" data-title="SKILLS">
+  <div class="page-hero-inner">
+    <p class="section-label">What I work with</p>
+    <h1 class="section-title">My <span>Skills</span></h1>
+  </div>
+</div>
+
+<div class="section">
+  {% for category, skill_list in categories.items %}
+  <div class="skills-category fade-up">
+    <div class="skills-cat-title">{{ category }}</div>
+    <div class="skills-grid">
+      {% for skill in skill_list %}
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">
+            {% if skill.name %}{{ skill.name }}{% else %}{{ skill }}{% endif %}
+          </span>
+          <span class="skill-pct"
+            {% if skill.proficiency %}{{ skill.proficiency }}%{% endif %}>
+          </span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" data-width="{% if skill.proficiency %}{{ skill.proficiency }}{% else %}80{% endif %}"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

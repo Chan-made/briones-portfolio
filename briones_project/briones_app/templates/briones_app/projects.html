@@ -1,0 +1,55 @@
+{% extends 'briones_app/base.html' %}
+{% block title %}Projects — {{ owner.name }}{% endblock %}
+
+{% block content %}
+<div class="page-hero" data-title="PROJECTS">
+  <div class="page-hero-inner">
+    <p class="section-label">What I've built</p>
+    <h1 class="section-title">My <span>Projects</span></h1>
+  </div>
+</div>
+
+<div class="section">
+  <div class="projects-grid">
+    {% for project in projects %}
+    <div class="project-card fade-up">
+      <div class="project-card-header">
+        <div class="project-number">0{{ forloop.counter }}</div>
+        <h3 class="project-title">
+          {% if project.title %}{{ project.title }}{% else %}{{ project }}{% endif %}
+        </h3>
+        <p class="project-desc">
+          {% if project.description %}{{ project.description }}{% endif %}
+        </p>
+      </div>
+      <div class="project-card-body">
+        <p class="tools-label">Stack</p>
+        <div class="tools-list">
+          {% if project.tools_list %}
+            {% for tool in project.tools_list %}
+            <span class="tool-tag">{{ tool }}</span>
+            {% endfor %}
+          {% elif project.tools %}
+            {% for tool in project.tools.split %}
+            <span class="tool-tag">{{ tool|cut:"," }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="project-card-footer">
+        {% if project.github_link %}
+        <a href="{{ project.github_link }}" class="btn btn-outline" target="_blank" rel="noopener">
+          GitHub ↗
+        </a>
+        {% endif %}
+        {% if project.live_link %}
+        <a href="{{ project.live_link }}" class="btn btn-primary" target="_blank" rel="noopener">
+          Live Demo ↗
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
